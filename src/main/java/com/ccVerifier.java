@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class ccVerifier {
 
-	public static void main(String[] args) {
+	public void verifyCard(String filePath) {
 		// TODO Auto-generated method stub
 
 		System.out.println("Hello World");
@@ -34,7 +34,7 @@ public class ccVerifier {
    	     }
    	     cardReader.close();
    	   } catch (FileNotFoundException e) {
-   	     System.out.println("File not found " + args[0]);
+   	     System.out.println("File not found " + filePath);
    	   } catch (Exception ex) {
    	   	System.out.println("Unknown Error " + ex.getMessage());
    	   }
