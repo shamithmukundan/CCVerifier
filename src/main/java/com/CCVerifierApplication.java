@@ -7,6 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CCVerifierApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CCVerifierApplication.class, args);
+		SpringApplication.run(ccVerifier.class, args);
 	}
 }

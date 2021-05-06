@@ -4,20 +4,25 @@ import java.util.Scanner;
 
 public class ccVerifier {
 
-	public void verifyCard(String filePath) {
+	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
 		System.out.println("Hello World");
 		String file = "src/test.csv";
+		CreditCard cc = new ccVerifier().cardVerify(file);
+	}
+	
+	public CreditCard cardVerify(String file) {
 		
     	try {
-   	     File cardCsv = new File(file);
-   	     Scanner cardReader = new Scanner(cardCsv);
+   	     	File cardCsv = new File(file);
+   	     	Scanner cardReader = new Scanner(cardCsv);
+   	     	CreditCard cc = null;
 
-   	     while (cardReader.hasNextLine()) {
-   	   	String csvLine = cardReader.nextLine();
-   	   	String[] cardEntry;
-   	   	if(csvLine != null && csvLine.length() > 0) {
+   	     	while (cardReader.hasNextLine()) {
+   	    	 String csvLine = cardReader.nextLine();
+   	    	 String[] cardEntry;
+   	    	 if(csvLine != null && csvLine.length() > 0) {
 	   	       cardEntry = csvLine.split(",");
 	   	       if(CardReaderHelper.isValidEntry(cardEntry)){
 	   	       	CreditCard cc = CardReaderHelper.determineCard(cardEntry[0]);
@@ -30,16 +35,15 @@ public class ccVerifier {
 	   	       } else {
 	   	       	System.out.println("Skipping due to bad format : " + cardEntry);
 	   	       }
-   	   	}
-   	     }
-   	     cardReader.close();
+   	    	 }
+   	     	}
+   	     	cardReader.close();
+   	     	return cc;
    	   } catch (FileNotFoundException e) {
-   	     System.out.println("File not found " + filePath);
+   	     System.out.println("File not found " + args[0]);
    	   } catch (Exception ex) {
    	   	System.out.println("Unknown Error " + ex.getMessage());
    	   }
-
-
 	}
 
 }
