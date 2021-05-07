@@ -5,14 +5,14 @@ import java.util.Scanner;
 public class CCVerifier {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
 		System.out.println("Hello World");
 		String file = "src/test.csv";
 		CreditCard cc = new CCVerifier().cardVerify(file);
 	}
 	
 	public CreditCard cardVerify(String file) {
+		//get card factory
+	    AbstractFactory cardFactory = FactoryProducer.getFactory();
 		CreditCard cc = null;
     	try {
    	     	File cardCsv = new File(file);
@@ -25,12 +25,13 @@ public class CCVerifier {
    	    	 if(csvLine != null && csvLine.length() > 0) {
 	   	       cardEntry = csvLine.split(",");
 	   	       if(CardReaderHelper.isValidEntry(cardEntry)){
-	   	       	cc = CardReaderHelper.determineCard(cardEntry[0]);
-	   	       	if(cc != null) {
-	   	       		cc.setCardNumber(cardEntry[0]);
-	   	       		cc.setExpirationDate(new SimpleDateFormat("MM/dd/yyyy").parse(cardEntry[1]));
-	   	       		cc.setName(cardEntry[2]);
-	   	       	}
+	   	       	//cc = CardReaderHelper.determineCard(cardEntry[0]);
+	   	    	cc = cardFactory.getCard(cardEntry[0]);
+//	   	       	if(cc != null) {
+//	   	       		cc.setCardNumber(cardEntry[0]);
+//	   	       		cc.setExpirationDate(new SimpleDateFormat("MM/dd/yyyy").parse(cardEntry[1]));
+//	   	       		cc.setName(cardEntry[2]);
+//	   	       	}
 	   	       	System.out.println("Created CC" + cc.toString());
 	   	       } else {
 	   	       	System.out.println("Skipping due to bad format : " + cardEntry);

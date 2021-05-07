@@ -1,14 +1,8 @@
 
-public class VisaCC extends CreditCard{
+public class VisaCC implements CreditCard{
 
-	VisaCC() {
-		super("VisaCC");
-		// TODO Auto-generated constructor stub
-	}
-
-	public static boolean isValid(String cardNumber){
-		return (cardNumber.length() == 13 ||
-				cardNumber.length() == 16) &&
-				cardNumber.startsWith("4");
+	@Override
+	public void type() {
+		System.out.println("Visa Credit Card");
 	}
 }

@@ -1,14 +1,8 @@
 
-public class MasterCC extends CreditCard{
+public class MasterCC implements CreditCard{
 
-	MasterCC() {
-		super("MasterCC");
-		// TODO Auto-generated constructor stub
-	}
-	
-	public static boolean isValid(String cardNumber ){
-		return (cardNumber.length() == 16) &&
-				cardNumber.startsWith("4") &&
-				cardNumber.substring(1,2).matches("[1-5]");
+	@Override
+	public void type() {
+		System.out.println("Master Credit Card");
 	}
 }
